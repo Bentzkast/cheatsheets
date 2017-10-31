@@ -1,3 +1,3 @@
 # cheatsheets
 
-### just a personal stash of resouces feel free to use it ^_^
+### just a personal stash of resources feel free to use it ^_^
