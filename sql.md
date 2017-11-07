@@ -9,13 +9,24 @@ CREATE DATABASE customers;
 -- init columns 
 CREATE TABLE costumers( 
   id INT NOT NULL AUTO_INCREMENT , 
-  first_name VARCHAR(255),
-  last_name VARCHAR(255),
+  firstName VARCHAR(255),
+  lastName VARCHAR(255),
   email VARCHAR(255)
   address VARCHAR(255),
   age INT;
   PRIMARY KEY(id)
  );
+ 
+CREATE TABLE orders (
+  id INT NOT NULL AUTO_INCREMENT,
+  orderNumber INT,
+  productId INT,
+  customerId INT,
+  orderDate DATETIME default CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  FOREIGN KEY(customersId) REFERENCES customers(id),
+  FOREIGN KEY(productId) REFERENCES products(id)
+);
 ```
 
 ## Init data to table
@@ -27,12 +38,15 @@ INSERT INTO customers( first_name, last_name, email, address ) VALUES
 ```
 
 ## Update table member
+
 ```SQL
 UPDATE customers
 SET email = 'new@gmail.com'
 WHERE id = 3; -- select specify id
 ```
+
 ## Delete table member 
+
 ```SQL
 UPDATE customers
 SET email = 'new@gmail.com'
@@ -40,6 +54,7 @@ WHERE id = 3; -- select specify id
 ```
 
 ## Alter table 
+
 ```SQL
 -- adding new column,  with no data on the new column
 ALTER TABLE customers 
@@ -56,6 +71,7 @@ DROP COLUMN newCol;
 ```
 
 ## Select data 
+
 ``` SQL
 -- Select all column
 SELECT  * FROM customers
@@ -75,5 +91,18 @@ SELECT address FROM customers;
 -- Only one of each
 SELECT DISTINCT address FROM customers;
 
--- With operator
-SELECT * FROM customers WHERE age < 30; 
+-- Operators
+SELECT * FROM customers WHERE age < 30;
+SELECT * FROM customers WHERE age BETWEEN 22 and 40;
+
+SELECT * FROM customers WHERE address NOT LIKE '%n';
+SELECT * FROM custormers IN ('California',  'Washington');
+```
+
+## Indexes
+- Find data more quickly
+- user doesn't see just to speed up query
+```SQL
+CREATE INDEX Aindex on customers( address );
+DROP INDEX Aindex on customers;
+```
