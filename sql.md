@@ -13,6 +13,21 @@ SQL cheatsheet
 
 Decimal = Numeric
 
+### Relations Algebra
+- Selection (σ)
+- Projection (π)
+- Union (U)
+- Difference (-)
+- Cartesian Product (⨉)
+- Natural Join (⋈) -- join by same col name 
+- Theta Join (⋈θ) -- join with θ conditions need to be satisfied
+- Equijoin - Theta join where θ only use equality 
+- Semijoin (⋉) - the result will be only the one of the table, other table col is ignored - EXIST or IN
+- Antijoin (▹) - no tuple in left which also in right, also in NOT EXIST or NOT IN
+- grouping operator (ᵛ - gamma)
+- The duplicate-elimination operator (ᵜ - seed)
+- The sorting operator ᵬ- TAU
+
 ### Basic Command - MySQL
 ```SQL
   SHOW TABLES -- List all Table defined in DB
@@ -75,40 +90,17 @@ DELETE FROM <TableName>
 [WHERE expression]
 ```
 ### Select
-Five basic rel op can be combined to express complex queries
-- Selection (σ)
-- Projection (π)
-- Union (U)
-- Difference (-)
-- Cartesian Product (⨉)
-- Natural Join (⋈) -- join by same col name 
-- Theta Join (⋈θ) -- join with θ conditions need to be satisfied
-- Equijoin - Theta join where θ only use equality 
-- Semijoin (⋉) - the result will be only the one of the table, other table col is ignored - EXIST or IN
-- Antijoin (▹) - no tuple in left which also in right, also in NOT EXIST or NOT IN
-- grouping operator (ᵛ - gamma)
-- The duplicate-elimination operator (ᵜ - seed)
-- The sorting operator ᵬ- TAU
 
-CONCAT() AS <name> -- concat multiple column into one
- 
- Aggregate Functions
-- COUNT()
-- MIN()
-- MAX()
-- SUM()
-- AVG()
-  
 
 ```SQL
 SELECT [DISTINCT] [<ColName>,]
-  |[ COUNT|MIN|SUM|AVG](<ColName>)
-FROM [<TableName>] -- Cartesian Product
-| FROM <TableName> 
-  |NATURAL JOIN <Tablename> AS <Alias>
-  |INNER JOIN <Tablename> USING (<ColName>) -- Requires columns with the same name in joined tables.
-  |INNER JOIN <Tablename> ON (<ColName>) -- need to specifiy the table
-  |[ LEFT|RIGHT|FULL|CROSS JOIN <table> ON <join condition> ]
+  [ COUNT|MIN|SUM|AVG](<ColName>)]
+  
+FROM [<TableName>] -- Cartesian Product if multi
+  [ NATURAL JOIN <Tablename> AS <Alias> ]
+  [ INNER JOIN <Tablename> USING (<ColName>)] -- Requires columns with the same name in joined tables.
+  [ INNER JOIN <Tablename> ON (<ColName>)] -- need to specifiy the table
+  [ [ LEFT|RIGHT|FULL|CROSS JOIN <table> ON <join condition> ]
 
 [ WHERE <conditions> ]
 | WHERE <ColName> NOT LIKE '%_r' -- CASE INsensitive
@@ -118,6 +110,16 @@ FROM [<TableName>] -- Cartesian Product
 
 [ ORDER BY <column(s)> ]
 ```
+##### Some helpfull functions
+CONCAT() AS <name> -- concat multiple column into one
+ 
+Aggregate Functions
+- COUNT()
+- MIN()
+- MAX()
+- SUM()
+- AVG()
+ 
 SELECT 
 UNION [ALL]
 SELECT
