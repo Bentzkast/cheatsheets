@@ -28,6 +28,8 @@ Decimal = Numeric
 - The duplicate-elimination operator (ᵜ - seed)
 - The sorting operator ᵬ- TAU
 
+<hr>
+
 ### Basic Command - MySQL
 ```SQL
   SHOW TABLES -- List all Table defined in DB
@@ -126,19 +128,25 @@ SELECT
 
 ### View
 a quick way to save a SQL query
+```SQL
 CREATE VIEW <viewName> AS <viewDefinition>;
+```
   
 ### Index
-
+```SQL
 CREATE INDEX <index name> ON <table name> (<column(s)>);
+```
   
 ### Transaction - ACID
 
+```SQL
 START TRANSACTION;
 
-query stuff
+-- query stuff
 
--- COMMIT;
--- ROLLBACK;
+[COMMIT;]
+[ROLLBACK;]
+```
+
 
 
